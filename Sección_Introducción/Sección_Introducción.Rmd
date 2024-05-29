@@ -1,0 +1,140 @@
+---
+title: "Math4Fish Entregable TODO"
+
+author:
+- Jamie Lentin^[lentinj@shuttlethread.com]
+- Alfonso Perez^[alfonso.perez@ieo.csic.es]
+- María José Zúñiga^[maria.zuniga@ieo.csic.es]
+- María Angeles Gamaza
+- Andrea Jiménez
+- Margarita María Rincón
+output:
+  # word_document:
+  #   toc: no
+  #   toc_depth: '6'
+  pdf_document:
+    keep_tex: yes
+    toc: no
+    toc_depth: '4'
+    number_sections: yes
+header-includes:
+- \usepackage{fancyhdr}
+- \usepackage{array}
+- \usepackage{booktabs}
+- \usepackage{threeparttablex}
+- \pagestyle{fancyplain}
+- \usepackage{caption}
+- \usepackage{listings}% http://ctan.org/pkg/listings
+- \captionsetup[table]{name=Tabla,labelsep=period}
+- \captionsetup[figure]{name=Figura,labelsep=period}
+- \captionsetup{justification=justified,format=plain,font=small,margin=1pt}
+- \fancyhead{}
+- \addtolength{\headheight}{1.5cm}
+- \rhead{\includegraphics[width=3.5cm]{input/LOGO_2SN_recortado.png}}
+- \usepackage{float}
+- \fancyfoot[R]{\thepage}
+- \fancyfoot[C]{\includegraphics[height=3cm]{input/Banners_Convenio.jpeg}}
+- \fancyfoot[L]{}
+ #\chead{\includegraphics[height=2.0cm]{logos_imagenes/Header_logos.jpg}}
+- \pagenumbering{gobble}
+- \pagenumbering{arabic}
+- \usepackage{fvextra}
+- \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+always_allow_html: true
+lang: es-ES
+geometry: "left=3cm,right=3cm,top=2cm,bottom=4.5cm"
+urlcolor: blue
+csl: ices-journal-of-marine-science.csl
+bibliography: referencias.bib
+link-citations: yes
+# editor_options:
+#   markdown:
+#     wrap: 72
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo=T, warning=FALSE, message=FALSE,comment="",collapse=TRUE,fig.align="center",fig.pos="h!",eval=F,tidy=TRUE, tidy.opts=list(arrow=TRUE, indent=2))
+```
+
+
+```{r results='hide',include=FALSE,eval=T}
+## Librerías requeridas
+ paquetes <- c("stringr", "tidyverse", "kableExtra","ggplot2","ggthemes",
+               "patchwork","dplyr","reshape","here","r4ss","zoo")
+ lapply(paquetes, require, character.only = TRUE)
+```
+
+
+<!-- \mbox{} con esto inserto una línea en blanco -->
+
+\mbox{}
+
+\mbox{}
+
+\mbox{}
+
+Instituto Español de Oceanografía, Consejo Superior de Investigaciones
+Científicas (IEO-CSIC)
+
+```{=tex}
+\renewcommand{\tablename}{Tabla}
+\newpage
+```
+\mbox{} \setcounter{tocdepth}{5} \tableofcontents \newpage
+
+# TODO
+
+* Deliverable number, name
+* Should we call it ModelWizard, or IEOInputSA?
+
+# Introduction
+
+Evaluating several modelling frameworks to decide on the most appropriate for a scenario is a common activity.
+This will most likely be undertaken when unfamiliar with modelling frameworks,
+and a learning curve will have to be scaled before being able to produce a working model in each, which takes time.
+
+Automating the process, creating equivalent models in different modelling frameworks isn't possible.
+There would not be a sufficient overlap in featuresets for this to make sense.
+However, a good portion of this work is formatting data into a shape suitable for ingestion by the modelling framework.
+In comparison, this can be laborous rote work.
+
+ModelWizard aims to assist with both problems.
+After filling in a simple web form and copying data in place, scripts will be generated that can produce Gadget3 and SS3 models.
+These aren't complete models in themselves, more customisation will be required.
+However, instead of a generic example you can now start with a script that works with your scenario and data.
+
+## Architecture
+
+ModelWizard is built in R using the Shiny framework, this allows rapid development of web applications in R
+The Shiny framework is *reactive*, automatically propogating changes from the web browser to the server,
+By building in R we can also utilise existing packages in R, such as r4ss and gadget3.
+
+A ModelWizard configuration is loaded/saved to spreadsheet files.
+This means no data is stored on the server, in turn requiring access restrictions.
+It also means the model data can be opened in Excel, and a more familiar environment used to edit observation data.
+
+ModelWizard doesn't itself run any models, instead R scripts are formed that you can then use on your computer.
+Whilst running models would be possible, it would increase server load dramatically.
+It also wouldn't be useful, as the idea behind ModelWizard is the produced models are a starting point for experimentation, and not a finished end product.
+
+## Installation
+
+Nothing needs to be installed, ModelWizard is freely available on the internet at http://math4fish.shinyapps.io/modelwizard,
+using shinyapps.io for hosting shiny applications.
+
+ModelWizard is open source, and the source code is available at https://github.com/gadget-framework/modelwizard/.
+From here you can either install it on your local computer, or install a modified version on shinyapps.io.
+
+# Financiación
+
+Proyecto financiado por la Unión Europea-NextGenerationEU. Componente 3. Inversión 7. Convenio entre el Ministerio de Agricultura, Pesca, y Alimentación y la Agencia Estatal Consejo Superior de Investigaciones Científicas M.P. -a través del Instituto Español de Oceanografía- para impulsar la investigación pesquera como base para la gestión pesquera sostenible.  Eje6, Math4Fish: Nuevas herramientas para el modelado matemático en el asesoramiento científico de pesquerías españolas.
+
+\newpage
+
+# Bibliografía
+
+ - Chang W, Cheng J, Allaire J, Sievert C, Schloerke B, Xie Y, Allen J, McPherson J, Dipert A, Borges B (2024). shiny: Web Application Framework for R. R package version 1.8.1.1, https://CRAN.R-project.org/package=shiny
+ - Lentin J, Elvarsson B, Butler W (2024). gadget3: Globally-Applicable Area Disaggregated General Ecosystem Toolbox V3. https://gadget-framework.github.io/gadget3/.
+ - Taylor, I.G., Doering, K.L., Johnson, K.F., Wetzel, C.R., Stewart, I.J., 2021. Beyond visualizing catch-at-age models: Lessons learned from the r4ss package about software to support stock assessments. Fisheries Research, 239:105924 https://doi.org/10.1016/j.fishres.2021.105924
+
+<div id="refs"></div>

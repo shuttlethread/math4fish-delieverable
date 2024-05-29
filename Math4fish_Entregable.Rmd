@@ -1,0 +1,12 @@
+---
+---
+
+
+```{r, eval=TRUE, echo=FALSE, include=FALSE}
+library("pdftools")
+library("here")
+pdf_combine(c(here("Sección_Introducción","Math4fish_Entregable_Sección_Introducción.pdf"),
+              here("Sección_Userguide","Math4fish_Entregable_Userguide.pdf"),
+              NULL), output = "Math4fish_Entregable_TODO.pdf")
+```
+
